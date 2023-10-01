@@ -3,10 +3,11 @@ package guru.springframework.jdbc.dao;
 import guru.springframework.jdbc.domain.Book;
 import guru.springframework.jdbc.repositories.BookRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Component
 public class BookDaoImpl implements BookDao {
 
     private final BookRepository bookRepository;
