@@ -39,7 +39,7 @@ public class DaoIntegrationTest {
 
     @Test
     void testFindAllBooks() {
-        List<Book> myLibrary = bookDao.findAll();
+        List<Book> myLibrary = bookDao.findAllBooks();
         assertThat(myLibrary.size() > 0);
     }
     @Test
