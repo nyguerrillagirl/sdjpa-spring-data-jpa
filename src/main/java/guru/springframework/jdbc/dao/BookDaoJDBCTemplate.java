@@ -1,6 +1,7 @@
 package guru.springframework.jdbc.dao;
 
 import guru.springframework.jdbc.domain.Book;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
@@ -15,12 +16,12 @@ public class BookDaoJDBCTemplate implements BookDao {
 
     @Override
     public Book findByIsbn(String isbn) {
-        return jdbcTemplate.queryForObject("SELECT book where isbn = ?", getBookMapper(), isbn);
+        return jdbcTemplate.queryForObject("SELECT * FROM book where isbn = ?", getBookMapper(), isbn);
     }
 
     @Override
     public Book getById(Long id) {
-        return jdbcTemplate.queryForObject("SELECT book where id = ?", getBookMapper(), id);
+        return jdbcTemplate.queryForObject("SELECT * FROM book where id = ?", getBookMapper(), id);
     }
 
     @Override
@@ -60,6 +61,10 @@ public class BookDaoJDBCTemplate implements BookDao {
     @Override
     public List<Book> findAllBooks(int pageSize, int offset) {
         return jdbcTemplate.query("SELECT * FROM book limit ? offset ?", getBookMapper(), pageSize, offset);
+    }
+    public List<Book> findAllBooks(Pageable pageable) {
+        return jdbcTemplate.query("SELECT * FROM book limit ? offset ?", getBookMapper(), pageable.getPageSize(),
+                pageable.getOffset());
     }
 
     private BookMapper getBookMapper() {
