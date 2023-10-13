@@ -21,6 +21,10 @@ public class Book {
 
     }
 
+    public String toString() {
+        return "id: " + id + " title: " + title + " isbn: " + isbn + " publisher: " + publisher + " authorId: "
+                + authorId;
+    }
     public Book(String title, String isbn, String publisher) {
         this.title = title;
         this.isbn = isbn;

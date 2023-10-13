@@ -9,9 +9,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -145,4 +147,17 @@ class BookDaoJDBCTemplateTest {
         assertThat(books).isNotNull();
         assertThat(books.size()).isEqualTo(0);
     }
+
+    @Test
+    void findAllBooksPage1_SortByTitle() {
+        List<Book> books = bookDao
+                .findAllBooksSortByTitle(PageRequest.of(0,10, Sort.by(Sort.Order.desc("title"))));
+
+        assertThat(books).isNotNull();
+        assertThat(books.size()).isEqualTo(10);
+        for (Book aBook: books) {
+            System.out.println(aBook.toString());
+        }
+    }
+
 }
