@@ -38,4 +38,8 @@ public class Author {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String toString() {
+        return "id: " + id + "; firstName: " + firstName + "; lastName: " + lastName;
+    }
 }
