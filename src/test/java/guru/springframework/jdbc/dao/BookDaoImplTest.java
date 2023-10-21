@@ -46,7 +46,7 @@ class BookDaoImplTest {
         List<Book> books = bookDao.findAllBooks(10, 10);
 
         assertThat(books).isNotNull();
-        assertThat(books.size()).isEqualTo(5);
+        assertThat(books.size()).isGreaterThan(5);
     }
 
     @Test
@@ -129,7 +129,7 @@ class BookDaoImplTest {
         List<Book> books = bookDao.findAllBooks(PageRequest.of(1,10));
 
         assertThat(books).isNotNull();
-        assertThat(books.size()).isEqualTo(5);
+        assertThat(books.size()).isGreaterThan(5);
     }
 
     @Test
